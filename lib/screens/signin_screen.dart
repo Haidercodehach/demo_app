@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'forgot_password_screen.dart';
+import "pricing_screen.dart";
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
@@ -238,6 +239,12 @@ class SignInScreen extends StatelessWidget {
                             TextButton(
                               onPressed: () {
                                 // Navigate to Pricing
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const PricingScreen(),
+                                  ),
+                                );
                               },
                               child: const Text(
                                 'Pricing',
