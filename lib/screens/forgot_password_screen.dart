@@ -5,122 +5,149 @@ class ForgotPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          stops: const [0.0, 0.7, 0.7, 1.0],
-          colors: [Colors.black, Colors.black, Colors.white, Colors.white],
-          // colors: [Colors.black, Colors.white],
+    final size = MediaQuery.of(context).size;
+    final isSmallScreen = size.width < 600;
+    final padding = size.width * (isSmallScreen ? 0.05 : 0.1);
+
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            stops: [0.0, 0.7, 0.7, 1.0],
+            colors: [Colors.black, Colors.black, Colors.white, Colors.white],
+          ),
         ),
-      ),
-      child: Scaffold(
-        // Set a white background to match the screenshot
-        backgroundColor: Colors.white,
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                // Top section with background image
-                Container(
-                  height: 250,
-                  width: double.infinity,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('image_bg.png'),
-                      fit: BoxFit.fill,
-                    ),
-                  ),
+        child: SafeArea(
+          child: Stack(
+            children: [
+              // Back Button
+              Positioned(
+                top: 16,
+                left: 16,
+                child: InkWell(
+                  onTap: () => Navigator.pop(context),
                   child: Container(
-                    // Add a semi-transparent overlay to ensure text visibility
+                    padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      // color: Colors.black.withOpacity(0.1), // Add white overlay
+                      color: Colors.white.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(8),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(16, 0, 16, 20),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Forgot Password',
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                          SizedBox(height: 8),
-                          Text(
-                            'Please enter your email or phone number to get\nreset password link',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                              height: 1.5, // Add line height
-                            ),
-                          ),
-                        ],
-                      ),
+                    child: const Icon(
+                      Icons.arrow_back_ios,
+                      color: Colors.white,
+                      size: 20,
                     ),
                   ),
                 ),
+              ),
 
-                // Spacing before the input field
-                const SizedBox(height: 20),
-
-                // Email/Phone TextField
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'tabish@m2m.com',
-                      hintStyle: const TextStyle(color: Colors.grey),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: const BorderSide(color: Colors.grey),
-                      ),
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 12,
-                      ),
-                    ),
-                  ),
-                ),
-
-                // Spacing before the button
-                const SizedBox(height: 20),
-
-                // Send reset link button
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: 48,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
+              // Main Content
+              SingleChildScrollView(
+                child: Column(
+                  children: [
+                    // Top section with background image
+                    Container(
+                      height: size.height * 0.465,
+                      width: double.infinity,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('image_bg.png'),
+                          fit: BoxFit.fill,
                         ),
-                        // If you need a specific color for the button,
-                        // set it here with backgroundColor:
-                        // primary: Colors.black,
                       ),
-                      onPressed: () {
-                        // TODO: Handle button press
-                      },
-                      child: const Text(
-                        'Send reset link',
-                        style: TextStyle(fontSize: 16),
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(24, 80, 24, 20),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            Text(
+                              'Forgot Password',
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                            SizedBox(height: 8),
+                            Text(
+                              'Please enter your email to receive a\npassword reset link',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.white70,
+                                height: 1.5,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ),
 
-                // Extra spacing at the bottom (if needed)
-                const SizedBox(height: 40),
-              ],
-            ),
+                    // Form section
+                    Container(
+                      constraints: BoxConstraints(
+                        maxWidth: isSmallScreen ? double.infinity : 600,
+                      ),
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.all(padding),
+                        child: Column(
+                          children: [
+                            TextField(
+                              decoration: InputDecoration(
+                                hintText: 'tabish@m2m.com',
+                                filled: true,
+                                fillColor: const Color(0xFFF6F6F7),
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                    color: Color(0xff43B888),
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 24),
+                            SizedBox(
+                              width: double.infinity,
+                              height: 50,
+                              child: ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: const Color(0xff43B888),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(6),
+                                  ),
+                                ),
+                                child: const Text(
+                                  'Send Reset Link',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       ),
