@@ -3,7 +3,7 @@ import 'screens/splash_screen.dart';
 import 'screens/signin_screen.dart';
 import 'screens/forgot_password_screen.dart';
 import 'screens/pricing_screen.dart';
-// import 'screens/verification_screen.dart';
+import 'screens/verification_screen.dart';
 // import 'screens/reset_password_screen.dart';
 // import 'screens/password_reset_success_screen.dart';
 // import 'screens/create_account_screen.dart';
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         '/signin': (context) => SignInScreen(),
         '/forgot_password': (context) => ForgotPasswordScreen(),
         '/pricing': (context) => PricingScreen(),
-        // '/verification': (context) => VerificationScreen(),
+        '/verification': (context) => VerificationScreen(),
         // '/reset_password': (context) => ResetPasswordScreen(),
         // '/password_reset_success': (context) => PasswordResetSuccessScreen(),
         // '/create_account': (context) => CreateAccountScreen(),

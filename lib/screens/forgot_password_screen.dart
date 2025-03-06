@@ -103,7 +103,9 @@ class ForgotPasswordScreen extends StatelessWidget {
                               width: double.infinity,
                               height: 50,
                               child: ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushNamed(context, '/verification');
+                                },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: const Color(0xff43B888),
                                   shape: RoundedRectangleBorder(
