@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'forgot_password_screen.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
@@ -195,6 +196,14 @@ class SignInScreen extends StatelessWidget {
                               child: TextButton(
                                 onPressed: () {
                                   // Navigate to Forgot Password
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder:
+                                          (context) =>
+                                              const ForgotPasswordScreen(),
+                                    ),
+                                  );
                                 },
                                 child: const Text(
                                   'Forgot Password?',
