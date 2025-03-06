@@ -23,27 +23,6 @@ class ForgotPasswordScreen extends StatelessWidget {
         child: SafeArea(
           child: Stack(
             children: [
-              // Back Button
-              Positioned(
-                top: 16,
-                left: 16,
-                child: InkWell(
-                  onTap: () => Navigator.pop(context),
-                  child: Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: const Icon(
-                      Icons.arrow_back_ios,
-                      color: Colors.white,
-                      size: 20,
-                    ),
-                  ),
-                ),
-              ),
-
               // Main Content
               SingleChildScrollView(
                 child: Column(
@@ -145,6 +124,27 @@ class ForgotPasswordScreen extends StatelessWidget {
                       ),
                     ),
                   ],
+                ),
+              ),
+
+              // Back Button (on top of everything)
+              Positioned(
+                top: 50,
+                left: 24,
+                child: InkWell(
+                  onTap: () => Navigator.pop(context),
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: const Color(0xff43B888),
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    child: const Icon(
+                      Icons.arrow_back_ios,
+                      color: Colors.white,
+                      size: 20,
+                    ),
+                  ),
                 ),
               ),
             ],
